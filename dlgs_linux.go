@@ -77,7 +77,7 @@ func (b *FileBuilder) save() (string, error) {
 
 func chooseFile(title string, buttonText string, action C.GtkFileChooserAction, b *FileBuilder) (string, error) {
 	checkStatus()
-	ctitle := C.CString(title)
+	ctitle := C.CString(firstOf(b.Dlg.Title, title))
 	defer C.free(unsafe.Pointer(ctitle))
 	cbuttonText := C.CString(buttonText)
 	defer C.free(unsafe.Pointer(cbuttonText))
